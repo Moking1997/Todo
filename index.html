@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Todo</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="todo-title">
+                TODO
+            </div>
+        </div>
+        <form @submit.prevent="merge" class="main-todo">
+            <input v-model="current.title" placeholder="添加新的任务..." type="text">
+            <div class="btnBox">
+                <button type="submit" class="addBtn"><i class="iconfont icon-jia" style="transform: rotate(0deg);"></i>
+                </button>
+                <div class="okBtn" style="bottom: 5px; background-color: rgb(117, 117, 117);">确认</div>
+            </div>
+            <ul class="todo-list">
+                <h1>Todo-list</h1>
+                <task :todo="todo" v-if="!todo.completed" v-for="(todo, index) in list">
+
+                </task>
+            </ul>
+
+
+        </form>
+        <ul class="done-todo">
+            <h1>Done-item</h1>
+            <div v-if="todo.completed" v-for="(todo, index) in list" class="task-item">
+                <span>{{todo.title}}</span>
+                <div @click="toggle_complete(todo.id)" class=" finish"><i class="iconfont icon-dui"></i></div>
+                <div @click="set_current(todo)" class="update"><i class="iconfont icon-update"></i></div>
+                <div @click="remove(todo.id)" class="clear"><i class="iconfont icon-shanchu"></i></div>
+            </div>
+        </ul>
+
+    </div>
+
+    <template id="task-tpl">
+        <div class="task-item">
+            <span>{{todo.title}}</span>
+            <div @click="action('toggle_complete', todo.id)" class=" finish"><i class="iconfont icon-dui"></i></div>
+            <div @click="action('set_current', todo)" class="update"><i class="iconfont icon-update"></i></div>
+            <div @click="action('remove', todo.id)" class="clear"><i class="iconfont icon-shanchu"></i></div>
+        </div>
+    </template>
+
+    <script src=js/vue.js> </script> <script src="js/localstorage.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
