@@ -25,16 +25,15 @@
                 <div class="okBtn" style="bottom: 5px; background-color: rgb(117, 117, 117);">确认</div>
             </div>
             <ul class="todo-list">
-                <h1>Todo-list</h1>
+                <h1>Todo-Task</h1>
                 <task :todo="todo" v-if="!todo.completed" v-for="(todo, index) in list">
-
                 </task>
             </ul>
 
 
         </form>
         <ul class="done-todo">
-            <h1>Done-item</h1>
+            <h1>Done-Task</h1>
             <div v-if="todo.completed" v-for="(todo, index) in list" class="task-item">
                 <span>{{todo.title}}</span>
                 <div @click="toggle_complete(todo.id)" class=" finish"><i class="iconfont icon-dui"></i></div>
